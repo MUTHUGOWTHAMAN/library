@@ -1,0 +1,136 @@
+/* 🚀 Base Layout */
+main {
+    height: calc(100vh - 70px);
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(circle, #0a0a0a, #1c1c1e, #0a0a0a);
+}
+
+/* 🔥 Navigation Bar */
+.navbar {
+    width: 100%;
+    background: linear-gradient(135deg, #2c3e50, #1e90ff, #ff4500);
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 25px rgba(255, 0, 255, 0.8);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    transition: 0.5s;
+    z-index: 10;
+}
+
+/* Navigation Logo */
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #0ff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.navbar .logo:hover {
+    color: #ff00ff;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #0ff;
+}
+
+/* Navigation Menu List */
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    transition: all 0.4s ease;
+}
+
+/* Navigation Links */
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 12px 20px;
+    transition: all 0.4s ease;
+}
+
+/* Active and Hover Effects */
+.navbar ul li a.active {
+    background: #0ff;
+    color: #000;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #0ff;
+}
+
+.navbar ul li a:hover {
+    background: #ff00ff;
+    color: #fff;
+    box-shadow: 0 0 20px #ff00ff;
+    border-radius: 8px;
+}
+
+/* 🚀 Main Content Wrapper */
+#main-wrapper {
+    flex-grow: 1;
+    height: 100%;
+    overflow-y: auto;
+    background: linear-gradient(135deg, #0a0a0a, #1c1c1e, #0a0a0a);
+    box-shadow: inset 0 0 50px rgba(0, 255, 255, 0.1), inset 0 0 100px rgba(255, 0, 255, 0.1);
+    border-top: 3px solid #ff00ff;
+    transition: 0.5s;
+    padding: 20px;
+}
+
+/* Scrollbar Styling */
+#main-wrapper::-webkit-scrollbar {
+    width: 12px;
+}
+
+#main-wrapper::-webkit-scrollbar-thumb {
+    background: #ff00ff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #ff00ff;
+}
+
+#main-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #0ff;
+    box-shadow: 0 0 30px #0ff;
+}
+
+/* 🔥 Navigation Hover Animation */
+@keyframes nav-glow {
+    0% {
+        box-shadow: 0 0 15px #0ff, 0 0 25px #ff00ff;
+    }
+    50% {
+        box-shadow: 0 0 25px #ff00ff, 0 0 35px #0ff;
+    }
+    100% {
+        box-shadow: 0 0 15px #0ff, 0 0 25px #ff00ff;
+    }
+}
+
+/* 🔥 Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .navbar ul li {
+        text-align: center;
+    }
+
+    #main-wrapper {
+        height: calc(100vh - 90px);
+    }
+}

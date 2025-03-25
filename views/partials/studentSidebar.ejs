@@ -1,0 +1,44 @@
+<!-- 🔥 Top Navigation Bar -->
+<nav id="top-nav" class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+
+        <!-- 🔥 Brand/Welcome Message -->
+        <a class="navbar-brand" href="#">
+            Welcome <%= currentUser.firstName ? currentUser.firstName : "Student" %>
+        </a>
+
+        <!-- 🔥 Toggler Button for Mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- 🔥 Navigation Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/student/books">Books</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/student/loans/current">My Current Books</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/student/loans/previous">My Previous Books</a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/student/profile">My Profile</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="btn btn-danger nav-link text-white" href="/auth/student-logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

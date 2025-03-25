@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Late Fee Calculation</title>
+    <link rel="stylesheet" href="/public/styles.css"> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background: #333;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+        .late-fee {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Library Late Book Return Fee</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>User Category</th>
+                <th>Book Issue Duration</th>
+                <th>Late Fee per Day</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Student</td>
+                <td>15 days</td>
+                <td class="late-fee">₹5 / day</td>
+            </tr>
+            <tr>
+                <td>Faculty</td>
+                <td>30 days</td>
+                <td class="late-fee">₹10 / day</td>
+            </tr>
+            <tr>
+                <td>Other</td>
+                <td>10 days</td>
+                <td class="late-fee">₹15 / day</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Late Fee Calculation</h2>
+    
+    <form action="/calculate" method="POST">
+        <label for="userType">Select User Type:</label>
+        <select name="userType" id="userType" required>
+            <option value="student">Student</option>
+            <option value="faculty">Faculty</option>
+            <option value="other">Other</option>
+        </select>
+        
+        <label for="daysLate">Days Late:</label>
+        <input type="number" name="daysLate" id="daysLate" min="0" required>
+        
+        <button type="submit">Calculate Fee</button>
+    </form>
+
+    <% if (lateFee) { %>
+        <h3>Late Fee: <span class="late-fee">₹<%= lateFee %></span></h3>
+    <% } %>
+
+</div>
+
+</body>
+</html>

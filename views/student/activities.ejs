@@ -1,0 +1,96 @@
+<main>
+    <%- include('../partials/studentSidebar') %>
+
+    <div id="main-wrapper" style="background: #f4f4f4; min-height: 100vh; padding: 40px;">
+
+        <div class="bg-white p-4 rounded shadow-sm" style="margin-bottom: 30px;">
+            <h5 class="m-0 fw-bold color-theme">Activities</h5>
+        </div>
+
+        <div class="col col-sm-10 col-12 m-auto my-4" style="max-height: 75%; overflow: auto; background: #fff; border-radius: 12px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); padding: 20px;">
+
+            <table class="table table-hover m-0" style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #007bff; color: #fff; text-align: left;">
+                        <th scope="col" style="padding: 15px;">#</th>
+                        <th scope="col" style="padding: 15px;">Category</th>
+                        <th scope="col" style="padding: 15px;">Activity</th>
+                        <th scope="col" style="padding: 15px;">Activity Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <% for(let i = 0; i < activities.length; i++) { %>
+
+                        <tr style="transition: all 0.3s; border-bottom: 1px solid #ddd; cursor: pointer;"
+                            onmouseover="this.style.backgroundColor='#f1f1f1';"
+                            onmouseout="this.style.backgroundColor='';">
+
+                            <!-- Issue Activity -->
+                            <% if(activities[i].category == "issue") { %>
+                                <th scope="row" style="padding: 15px; color: #007bff;"><%= i+1 %></th>
+                                <td style="padding: 15px; color: #28a745;">Issue</td>
+                                <td style="padding: 15px;">
+                                    <span style="font-weight: bold; color: #343a40;"><%= activities[i].book.title %></span>
+                                    <span>was issued</span>
+                                </td>
+                                <td style="padding: 15px; color: #6c757d;">
+                                    <%= activities[i].activityTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" }) %>
+                                </td>
+
+                            <!-- Return Activity -->
+                            <% } else if(activities[i].category == "return") { %>
+                                <th scope="row" style="padding: 15px; color: #007bff;"><%= i+1 %></th>
+                                <td style="padding: 15px; color: #ffc107;">Return</td>
+                                <td style="padding: 15px;">
+                                    <span style="font-weight: bold; color: #343a40;"><%= activities[i].book.title %></span>
+                                    <span>was returned</span>
+                                </td>
+                                <td style="padding: 15px; color: #6c757d;">
+                                    <%= activities[i].activityTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" }) %>
+                                </td>
+
+                            <!-- Add Book Activity -->
+                            <% } else if(activities[i].category == "addBook") { %>
+                                <th scope="row" style="padding: 15px; color: #007bff;"><%= i+1 %></th>
+                                <td style="padding: 15px; color: #17a2b8;">Add Book</td>
+                                <td style="padding: 15px;">
+                                    <span>Added book</span>
+                                    <span style="font-weight: bold; color: #343a40;"><%= activities[i].book.title %></span>
+                                </td>
+                                <td style="padding: 15px; color: #6c757d;">
+                                    <%= activities[i].activityTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" }) %>
+                                </td>
+
+                            <!-- Update Book Activity -->
+                            <% } else if(activities[i].category == "updateBook") { %>
+                                <th scope="row" style="padding: 15px; color: #007bff;"><%= i+1 %></th>
+                                <td style="padding: 15px; color: #6610f2;">Update Book</td>
+                                <td style="padding: 15px;">
+                                    <span>Updated book</span>
+                                    <span style="font-weight: bold; color: #343a40;"><%= activities[i].book.title %></span>
+                                </td>
+                                <td style="padding: 15px; color: #6c757d;">
+                                    <%= activities[i].activityTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" }) %>
+                                </td>
+
+                            <!-- Update Student Profile -->
+                            <% } else if(activities[i].category == "updateStudentProfile") { %>
+                                <th scope="row" style="padding: 15px; color: #007bff;"><%= i+1 %></th>
+                                <td style="padding: 15px; color: #dc3545;">Update Student</td>
+                                <td style="padding: 15px;">
+                                    <span>You updated your profile</span>
+                                </td>
+                                <td style="padding: 15px; color: #6c757d;">
+                                    <%= activities[i].activityTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" }) %>
+                                </td>
+                            <% } %>
+
+                        </tr>
+
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,130 @@
+<main>
+    <%- include('../partials/studentSidebar') %>
+
+    <div id="main-wrapper" style="background: #f4f4f4; min-height: 100vh; padding: 40px;">
+
+        <!-- Header Section -->
+        <div class="bg-white mb-5 p-4 d-flex align-items-center justify-content-between shadow-sm rounded" style="border: 1px solid #ddd;">
+            <h5 class="m-0 fw-bold" style="color: #333;">Books</h5>
+            <div class="btn-group">
+                <button class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#filter-modal">Filter</button>
+                <button class="btn btn-secondary px-4" data-bs-toggle="modal" data-bs-target="#sort-modal">Sort</button>
+            </div>
+        </div>
+
+        <!-- Books Section -->
+        <div class="d-flex flex-wrap justify-content-center">
+
+            <% if(books.length == 0) { %>
+                <div class="text-center text-muted" style="font-size: 18px;">No books were found.</div>
+            <% } else for(let i=0; i<books.length; i++) { %>
+
+                <div class="card m-3 shadow-sm" style="width: 20rem; transition: transform 0.3s; border-radius: 12px; overflow: hidden; border: 1px solid #ddd;"
+                    onmouseover="this.style.transform='scale(1.05)'"
+                    onmouseout="this.style.transform='scale(1)'">
+
+                    <div class="card-body p-4">
+                        
+                        <!-- Availability Badge -->
+                        <% if(books[i].stock > 0) { %>
+                            <div class="text-end">
+                                <span class="badge bg-success" style="font-size: 14px;">Available</span>
+                            </div>
+                        <% } else { %>
+                            <div class="text-end">
+                                <span class="badge bg-danger" style="font-size: 14px;">Unavailable</span>
+                            </div>
+                        <% } %>
+
+                        <!-- Book Details -->
+                        <h5 class="card-title" style="color: #333; font-weight: bold; margin-bottom: 8px;"><%= books[i].title %></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><%= books[i].authors %></h6>
+
+                        <div class="my-3" style="font-size: 14px; color: #555;">
+                            <div>📚 <strong>Category:</strong> <%= books[i].category %></div>
+                            <div>🔢 <strong>ISBN:</strong> <%= books[i].ISBN %></div>
+                            <div>📦 <strong>In stock:</strong> <%= books[i].stock %></div>
+                        </div>
+
+                        <p class="card-text" style="font-size: 14px; color: #666; line-height: 1.6;">
+                            <%= books[i].description %>
+                        </p>
+                    </div>
+                </div>
+
+            <% } %>
+
+        </div>
+
+        <!-- Filter Modal -->
+        <div class="modal fade" id="filter-modal" tabindex="-1">
+            <div class="modal-dialog">
+                <form class="modal-content" action="/student/books" method="GET">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title">Filters</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body p-4">
+                        <div class="mb-4">
+                            <label for="filter-title" class="form-label">Title</label>
+                            <input type="text" name="filter[title]" class="form-control" id="filter-title">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="filter-author" class="form-label">Author</label>
+                            <input type="text" name="filter[authors]" class="form-control" id="filter-author">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="filter-category" class="form-label">Category</label>
+                            <input type="text" name="filter[category]" class="form-control" id="filter-category">
+                        </div>
+
+                        <div class="mb-4 form-check">
+                            <input class="form-check-input" type="checkbox" name="filter[available]" value="true" id="filter-available" checked>
+                            <label for="filter-available" class="form-check-label">Available</label>
+                        </div>
+
+                        <div class="mb-4 form-check">
+                            <input class="form-check-input" type="checkbox" name="filter[unavailable]" value="true" id="filter-unavailable" checked>
+                            <label for="filter-unavailable" class="form-check-label">Unavailable</label>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Apply</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Sort Modal -->
+        <div class="modal fade" id="sort-modal" tabindex="-1">
+            <div class="modal-dialog">
+                <form class="modal-content" action="/student/books" method="GET">
+                    <div class="modal-header bg-secondary text-white">
+                        <h5 class="modal-title">Sort by</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body p-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sortBy" id="title-asc" value="title">
+                            <label class="form-check-label" for="title-asc">Title (Ascending)</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sortBy" id="title-desc" value="-title">
+                            <label class="form-check-label" for="title-desc">Title (Descending)</label>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Apply</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

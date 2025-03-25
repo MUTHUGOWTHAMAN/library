@@ -1,0 +1,91 @@
+<main>
+	<%- include('../partials/adminSidebar') %>
+
+	<div id="main-wrapper">
+		
+		<!-- 🔥 Header -->
+		<div class="bg-white p-3">
+			<h5 class="m-0 fw-bold color-theme">Activities</h5>
+		</div>
+
+		<!-- 🔥 Table Container -->
+		<div class="col col-sm-10 col-12 m-auto my-4" style="max-height: 75%; overflow: auto;">
+
+			<table class="table table-info table-striped table-hover m-0 bg-white">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Category</th>
+						<th scope="col">Activity</th>
+						<th scope="col">Activity Time</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					<% activities.forEach((activity, index) => { %>
+						<tr>
+							<th scope="row"><%= index + 1 %></th>
+
+							<!-- 🔥 Category -->
+							<td>
+								<%= activity.category === "issue" ? "Issue" :
+									activity.category === "return" ? "Return" :
+									activity.category === "addBook" ? "Add Book" :
+									activity.category === "updateBook" ? "Update Book" :
+									activity.category === "updateAdminProfile" ? "Update Admin" :
+									activity.category === "updateStudentProfile" ? "Update Student" : "Unknown" %>
+							</td>
+
+							<!-- 🔥 Activity Description -->
+							<td>
+								<% if (activity.category === "issue") { %>
+									<span class="activity-item"><%= activity.student.firstName %></span> 
+									<span>borrowed book</span> 
+									<span class="activity-item"><%= activity.book.title %></span> 
+									<span>from</span> 
+									<span class="activity-item"><%= activity.admin.firstName %></span>
+
+								<% } else if (activity.category === "return") { %>
+									<span class="activity-item"><%= activity.student.firstName %></span> 
+									<span>returned book</span> 
+									<span class="activity-item"><%= activity.book.title %></span> 
+									<span>to</span> 
+									<span class="activity-item"><%= activity.admin.firstName %></span>
+
+								<% } else if (activity.category === "addBook") { %>
+									<span class="activity-item"><%= activity.admin.firstName %></span> 
+									<span>added book</span> 
+									<span class="activity-item"><%= activity.book.title %></span>
+
+								<% } else if (activity.category === "updateBook") { %>
+									<span class="activity-item"><%= activity.admin.firstName %></span> 
+									<span>updated book</span> 
+									<span class="activity-item"><%= activity.book.title %></span>
+
+								<% } else if (activity.category === "updateAdminProfile") { %>
+									<span class="activity-item"><%= activity.admin.firstName %></span> 
+									<span>updated his/her profile</span>
+
+								<% } else if (activity.category === "updateStudentProfile") { %>
+									<span class="activity-item"><%= activity.student.firstName %></span> 
+									<span>updated his/her profile</span>
+
+								<% } else { %>
+									<span class="text-muted">Unknown activity</span>
+								<% } %>
+							</td>
+
+							<!-- 🔥 Activity Time -->
+							<td>
+								<%= activity.activityTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" }) %>
+							</td>
+						</tr>
+					<% }) %>
+
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+</main>

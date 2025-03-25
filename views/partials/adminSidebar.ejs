@@ -1,0 +1,65 @@
+<main>
+
+	<!-- 🔥 Top Navigation Bar -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+		<div class="container-fluid">
+
+			<!-- 🔥 Brand -->
+			<a class="navbar-brand" href="/admin/dashboard">📚 Library Admin</a>
+
+			<!-- 🔥 Toggler for small screens -->
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+
+					
+
+
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/students">Students</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/books">Books</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/issue">Issue Book</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/loans/current">Books currently issued</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/loans/previous">Books returned</a>
+					</li>
+
+					<!-- ✅ Added Late Fee Navigation -->
+					<li class="nav-item">
+						<a class="nav-link  fw-bold" href="/admin/late_fee">Fine</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/profile">My Profile</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link btn btn-danger text-white ms-2" href="/auth/admin-logout">Logout</a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- 🔥 Main Content -->
+	<div class="container my-5">
+		<h2>Welcome <%= currentUser.firstName ? currentUser.firstName : "Admin" %>!</h2>
+		<p>Manage your library records easily from the admin panel.</p>
+	</div>
+
+</main>

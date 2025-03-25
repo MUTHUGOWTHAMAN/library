@@ -1,0 +1,74 @@
+<main>
+    <%- include('../partials/studentSidebar') %>
+
+    <div id="main-wrapper" style="background: #f4f4f4; min-height: 100vh; padding: 40px;">
+
+        <!-- Header Section -->
+        <div class="bg-white p-4 shadow-sm rounded mb-4" style="border: 1px solid #ddd;">
+            <h5 class="m-0 fw-bold" style="color: #333;">📚 Books Returned</h5>
+        </div>
+
+        <!-- Table Section -->
+        <div class="col col-sm-10 col-12 m-auto" 
+             style="max-height: 75vh; overflow: auto; background: #fff; border-radius: 12px; 
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+
+            <table class="table m-0" style="border-collapse: collapse; width: 100%; font-size: 16px;">
+
+                <!-- Table Header -->
+                <thead style="background: #28a745; color: #fff; position: sticky; top: 0; z-index: 10;">
+                    <tr>
+                        <th scope="col" style="padding: 15px; text-align: left;">#</th>
+                        <th scope="col" style="padding: 15px; text-align: left;">Book Title</th>
+                        <th scope="col" style="padding: 15px; text-align: left;">Author(s)</th>
+                        <th scope="col" style="padding: 15px; text-align: left;">Issued Time</th>
+                        <th scope="col" style="padding: 15px; text-align: left;">Returned Time</th>
+                        <th scope="col" style="padding: 15px; text-align: left;">Status</th>
+                    </tr>
+                </thead>
+
+                <!-- Table Body -->
+                <tbody>
+                    <% if(previousLoans.length === 0) { %>
+                        <tr>
+                            <td colspan="6" class="text-center p-4" style="color: #555;">No returned books found.</td>
+                        </tr>
+                    <% } else { %>
+                        <% for(let i=0; i < previousLoans.length; i++) { %>
+                            <tr style="transition: background 0.3s;" 
+                                onmouseover="this.style.background='#f1f1f1'" 
+                                onmouseout="this.style.background='transparent'">
+
+                                <th scope="row" style="padding: 15px; color: #555;"> <%= i + 1 %> </th>
+                                <td style="padding: 15px; color: #333; font-weight: bold;"> <%= previousLoans[i].book.title %> </td>
+                                <td style="padding: 15px; color: #666;"> <%= previousLoans[i].book.authors %> </td>
+
+                                <td style="padding: 15px; color: #444;"> 
+                                    <%= previousLoans[i].issueTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short"}) %> 
+                                </td>
+
+                                <td style="padding: 15px; color: #444;"> 
+                                    <%= previousLoans[i].returnTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short"}) %> 
+                                </td>
+
+                                <!-- Status Indicator -->
+                                <td style="padding: 15px; font-weight: bold;">
+                                    <% if (previousLoans[i].status === 'returned') { %>
+                                        <span style="color: #28a745; background: #d4edda; padding: 6px 12px; border-radius: 8px;">
+                                            Returned
+                                        </span>
+                                    <% } else { %>
+                                        <span style="color: #ffc107; background: #fff3cd; padding: 6px 12px; border-radius: 8px;">
+                                            Pending
+                                        </span>
+                                    <% } %>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+	
